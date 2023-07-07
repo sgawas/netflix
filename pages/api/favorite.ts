@@ -9,7 +9,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       console.log("=======");
       if (req.method === 'POST') {
         console.log("------");
-        const { currentUser } = await serverAuth(req);
+        const { currentUser } = await serverAuth(req, res);
         
         const { movieId } = req.body;
         const existingMovie = await prismadb.movie.findUnique({
@@ -37,7 +37,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       }
   
       if (req.method === 'DELETE') {
-        const { currentUser } = await serverAuth(req);
+        const { currentUser } = await serverAuth(req, res);
   
         const { movieId } = req.body;
   
